@@ -99,7 +99,7 @@ abstract class RhythmTestCase extends TestCase
      */
     protected function setupRhythmComponents(): void
     {
-        $this->container = $this->createMock(ContainerInterface::class);
+        $this->container = $this->createStub(ContainerInterface::class);
 
         Configure::write('Rhythm.default_aggregations', ['count', 'min', 'max', 'sum', 'avg']);
 

@@ -166,12 +166,6 @@ The `slow-outgoing-requests` widget shows outgoing requests made using CakePHP's
 
 By default, entries will be grouped by the full URL. However, you may wish to normalize or group similar outgoing requests using regular expressions. See the [slow outgoing requests recorder](#slow-outgoing-requests-recorder) documentation for more information.
 
-#### Cache
-
-The `cache` widget shows the cache hit and miss statistics for your application, both globally and for individual keys.
-
-By default, entries will be grouped by key. However, you may wish to normalize or group similar keys using regular expressions. See the [cache interactions recorder](#cache-interactions-recorder) documentation for more information.
-
 #### App Info
 
 ![App Info Widget](images/app-info.png)
@@ -214,30 +208,11 @@ bin/cake rhythm restart
 ```
 
 > [!NOTE]
-> Rhythm uses the [cache](/docs/{{version}}/cache) to store restart signals, so you should verify that a cache driver is properly configured for your application before using this feature.
+> Rhythm uses the cache to store restart signals, so you should verify that a cache driver is properly configured for your application before using this feature.
 
 ### Recorders
 
 Recorders are responsible for capturing entries from your application to be recorded in the Rhythm database. Recorders are registered and configured in the `recorders` section of the [Rhythm configuration file](#configuration).
-
-#### Cache Interactions
-
-The `CacheInteractions` recorder captures information about the [cache](/docs/{{version}}/cache) hits and misses occurring in your application for display on the [Cache](#cache-widget) widget.
-
-You may optionally adjust the [sample rate](#sampling) and ignored key patterns.
-
-You may also configure key grouping so that similar keys are grouped as a single entry. For example, you may wish to remove unique IDs from keys caching the same type of information. Groups are configured using a regular expression to "find and replace" parts of the key. An example is included in the configuration file:
-
-```php
-'cache_interactions' => [
-    // ...
-    'groups' => [
-        // '/:\d+/' => ':*',
-    ],
-],
-```
-
-The first pattern that matches will be used. If no patterns match, then the key will be captured as-is.
 
 #### Exceptions
 
@@ -508,7 +483,7 @@ bin/cake rhythm restart
 ```
 
 > [!NOTE]
-> Rhythm uses the [cache](/docs/{{version}}/cache) to store restart signals, so you should verify that a cache driver is properly configured for your application before using this feature.
+> Rhythm uses the cache to store restart signals, so you should verify that a cache driver is properly configured for your application before using this feature.
 
 ### Sampling
 

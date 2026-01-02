@@ -51,10 +51,10 @@ class RecorderResolverTest extends TestCase
         $this->container = new Container();
 
         $this->container->addShared(StorageInterface::class, function () {
-            return $this->createMock(StorageInterface::class);
+            return $this->createStub(StorageInterface::class);
         });
 
-        $mockIngest = $this->createMock(IngestInterface::class);
+        $mockIngest = $this->createStub(IngestInterface::class);
         $this->rhythm = new Rhythm(
             $this->container->get(StorageInterface::class),
             $mockIngest,
@@ -71,7 +71,7 @@ class RecorderResolverTest extends TestCase
      */
     public function testResolveWithContainerRegistration(): void
     {
-        $mockRecorder = $this->createMock(RecorderInterface::class);
+        $mockRecorder = $this->createStub(RecorderInterface::class);
 
         $this->container->addShared('Rhythm\Test\TestCase\Recorder\TestRecorder', function () use ($mockRecorder) {
             return $mockRecorder;

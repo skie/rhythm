@@ -58,4 +58,24 @@ class RestartCommand extends Command
 
         return self::CODE_SUCCESS;
     }
+
+    /**
+     * Get the command name.
+     *
+     * @return string
+     */
+    public static function defaultName(): string
+    {
+        return 'rhythm restart';
+    }
+
+    /**
+     * Get the command description.
+     *
+     * @return string
+     */
+    public static function getDescription(): string
+    {
+        return 'Restart any running "check" and "digest" commands';
+    }
 }

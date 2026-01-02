@@ -42,11 +42,13 @@ class IntegrationFlowTest extends RhythmTestCase
 
         /** @var \Psr\Http\Server\RequestHandlerInterface&\PHPUnit\Framework\MockObject\MockObject $handler */
         $handler = $this->createMock(RequestHandlerInterface::class);
-        $handler->method('handle')->willReturnCallback(function () {
-            usleep(10000); // 10ms
+        $handler->expects($this->once())
+            ->method('handle')
+            ->willReturnCallback(function () {
+                usleep(10000); // 10ms
 
-            return new Response();
-        });
+                return new Response();
+            });
         $this->assertInstanceOf(RequestHandlerInterface::class, $handler);
 
         $result = $middleware->process($request, $handler);

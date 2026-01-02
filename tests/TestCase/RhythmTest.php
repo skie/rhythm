@@ -40,7 +40,7 @@ class RhythmTest extends TestCase
     {
         parent::setUp();
 
-        $this->container = $this->createMock(ContainerInterface::class);
+        $this->container = $this->createStub(ContainerInterface::class);
 
         $storage = new DigestStorage();
         $ingest = new TransparentIngest($storage);

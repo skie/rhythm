@@ -26,7 +26,6 @@
     - [Server State Widget](#server-state-widget)
     - [Usage Widget](#usage-widget)
     - [Queues Widget](#queues-widget)
-    - [Cache Widget](#cache-widget)
     - [Slow Queries Widget](#slow-queries-widget)
     - [Slow Requests Widget](#slow-requests-widget)
     - [Exceptions Widget](#exceptions-widget)

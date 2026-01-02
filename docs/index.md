@@ -27,7 +27,7 @@ Real-time application performance monitoring for CakePHP 5.x applications with c
 
 1. Install the plugin via Composer:
 ```bash
-composer require rhythm/rhythm
+composer require skie/rhythm
 ```
 
 2. Load the plugin in your `Application.php`:
@@ -44,6 +44,12 @@ public function bootstrap(): void
 ```bash
 bin/cake migrations migrate -p Rhythm
 ```
+4. Database Configuration
+
+> [!NOTE]
+> Rhythm's storage implementation currently requires a MySQL, MariaDB, PostgreSQL. It is important to note that `quoteIdentifiers` should be set to true in your database configuration for Rhythm to work properly.
+
+By default, `Rhythm.storage.database.connection` is set to 'default' in the database configuration but you can change it to your own database connection.
 
 ## Configuration
 
@@ -241,15 +247,6 @@ Metrics are automatically ingested when the buffer is full. To process queued me
 ```bash
 # Process metrics from Redis queue
 bin/cake rhythm digest
-
-# Run in continuous mode (daemon)
-bin/cake rhythm digest --continuous
-
-# Show queue statistics
-bin/cake rhythm digest --stats
-
-# Clear all queues (for testing)
-bin/cake rhythm digest --clear
 ```
 
 #### Null Ingest (Testing/Development)
@@ -271,9 +268,6 @@ No additional commands needed - all metrics are silently discarded.
 ```bash
 # Every 5 minutes
 */5 * * * * cd /path/to/your/app && bin/cake rhythm digest
-
-# Or run continuously
-bin/cake rhythm digest --continuous --sleep 30
 ```
 
 ### Server Monitoring
@@ -365,9 +359,6 @@ Shows external API calls with grouped URLs and response times. Shows slowest ext
 
 ### SlowJobsWidget
 Shows slow background jobs with execution times and status. Shows top 10 slowest jobs with sorting options for job performance monitoring.
-
-### CacheWidget
-Shows cache hit rates and performance. Shows hit/miss counts and efficiency percentages to help optimize cache usage.
 
 ### UsageWidget
 Displays system resource usage including memory, response times, and request counts. Shows status indicators for each metric.
