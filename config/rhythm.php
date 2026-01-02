@@ -48,6 +48,22 @@ return [
                     '#^/health#',
                 ],
             ],
+            'cache' => [
+                'className' => \Rhythm\Recorder\CacheRecorder::class,
+                'enabled' => env('RHYTHM_CACHE_ENABLED', true),
+                'sample_rate' => env('RHYTHM_CACHE_SAMPLE_RATE', 1.0),
+                'groups' => [
+                    // Optional: Normalize cache keys (like Reverb)
+                    // '/users:\d+:profile/' => 'users:{user}:profile',
+                ],
+                'ignore' => [
+                    // '/cake_model_/',
+                    '/cake_core_/',
+                    '/^rhythm-widget/',
+                    '/^cake_rhythm/',
+                    '/^rhythm/',
+                ],
+            ],
             'slow_queries' => [
                 'className' => \Rhythm\Recorder\SlowQueriesRecorder::class,
                 'enabled' => env('RHYTHM_SLOW_QUERIES_ENABLED', true),
@@ -354,6 +370,12 @@ return [
         ],
 
         'widgets' => [
+            'cache' => [
+                'className' => \Rhythm\Widget\CacheWidget::class,
+                'name' => 'Cache',
+                'cols' => ['default' => 12, 'lg' => 4],
+                'refreshInterval' => 60,
+            ],
             'server-state' => [
                 'className' => \Rhythm\Widget\ServerStateWidget::class,
                 'name' => 'Server State',
@@ -517,6 +539,7 @@ return [
                 'slow-outgoing-requests' => ['cols' => ['default' => 12, 'lg' => 6]],
                 'queues' => ['cols' => ['default' => 12, 'lg' => 12]],
                 'slow-jobs' => ['cols' => ['default' => 12, 'lg' => 12]],
+                'cache' => ['cols' => ['default' => 12, 'lg' => 6]],
             ],
             'status' => [
                 'app_info' => ['cols' => ['default' => 12, 'lg' => 12]],

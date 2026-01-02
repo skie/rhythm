@@ -501,7 +501,7 @@ class RhythmAggregatesTable extends Table
                         default => throw new InvalidArgumentException("Invalid aggregate: {$aggregate}"),
                     };
                 } else {
-                    $bucketSelectFields[$aggregate] = $bucketQuery->newExpr('NULL');
+                    $bucketSelectFields[$aggregate] = $bucketQuery->expr('NULL');
                 }
             }
 
@@ -555,7 +555,7 @@ class RhythmAggregatesTable extends Table
 
         $outerSelectFields['key'] = $keySubquery;
         foreach ($aggregates as $aggregate) {
-            $outerSelectFields[$aggregate] = $finalQuery->newExpr($aggregate);
+            $outerSelectFields[$aggregate] = $finalQuery->expr($aggregate);
         }
 
         $finalQuery = $finalQuery

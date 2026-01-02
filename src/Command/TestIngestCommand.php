@@ -83,4 +83,24 @@ class TestIngestCommand extends Command
 
         return self::CODE_SUCCESS;
     }
+
+    /**
+     * Get the command name.
+     *
+     * @return string
+     */
+    public static function defaultName(): string
+    {
+        return 'rhythm test-ingest';
+    }
+
+    /**
+     * Get the command description.
+     *
+     * @return string
+     */
+    public static function getDescription(): string
+    {
+        return 'Test automatic ingest functionality';
+    }
 }

@@ -28,7 +28,7 @@ use Rhythm\Storage\StorageInterface;
 /**
  * Plugin for Rhythm performance monitoring
  */
-class Plugin extends BasePlugin
+class RhythmPlugin extends BasePlugin
 {
     /**
      * Load all the plugin configuration and bootstrap logic.
@@ -158,13 +158,15 @@ class Plugin extends BasePlugin
      */
     public function console(CommandCollection $commands): CommandCollection
     {
-        $commands->add('rhythm clear', ClearCommand::class);
-        $commands->add('rhythm purge', ClearCommand::class);
-        $commands->add('rhythm digest', DigestCommand::class);
-        $commands->add('rhythm work', DigestCommand::class);
-        $commands->add('rhythm check', CheckCommand::class);
-        $commands->add('rhythm restart', RestartCommand::class);
+        $commands = parent::console($commands);
 
-        return $commands->addMany($commands->discoverPlugin($this->getName()));
+        return $commands->addMany([
+            'rhythm clear' => ClearCommand::class,
+            'rhythm purge' => ClearCommand::class,
+            'rhythm digest' => DigestCommand::class,
+            'rhythm work' => DigestCommand::class,
+            'rhythm check' => CheckCommand::class,
+            'rhythm restart' => RestartCommand::class,
+        ]);
     }
 }

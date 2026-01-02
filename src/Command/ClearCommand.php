@@ -91,4 +91,24 @@ class ClearCommand extends Command
 
         return Command::CODE_SUCCESS;
     }
+
+    /**
+     * Get the command name.
+     *
+     * @return string
+     */
+    public static function defaultName(): string
+    {
+        return 'rhythm clear';
+    }
+
+    /**
+     * Get the command description.
+     *
+     * @return string
+     */
+    public static function getDescription(): string
+    {
+        return 'Delete all Rhythm data from storage';
+    }
 }

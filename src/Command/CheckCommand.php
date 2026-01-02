@@ -134,4 +134,24 @@ class CheckCommand extends Command
 
         return self::CODE_SUCCESS;
     }
+
+    /**
+     * Get the command name.
+     *
+     * @return string
+     */
+    public static function defaultName(): string
+    {
+        return 'rhythm check';
+    }
+
+    /**
+     * Get the command description.
+     *
+     * @return string
+     */
+    public static function getDescription(): string
+    {
+        return 'Take a snapshot of the current server\'s rhythm';
+    }
 }
